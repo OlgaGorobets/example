@@ -1,4 +1,6 @@
-const getProducts = (count=100) => {
+import { SET_PAGINATION_ACTIVE_PAGE } from '../actions/pagination';
+
+const getProducts = (count=50) => {
 	let res = []
 	for(let i=0;i<count;i++){
 		res.push({
@@ -12,12 +14,23 @@ const getProducts = (count=100) => {
 }
 const initialState = {
    products: getProducts(),
+   pagination:{ page: 0, count: 9},
+   filter: {
+	   sortField: {name: 'name', type: 'asc'},
+	   removeFields: [],
+   },
    basket: {},
    order: {},
 }
 const reducer = (state = initialState, action) => {
    switch (action.type) {
-      case 'INCREMENT': return state
+      case SET_PAGINATION_ACTIVE_PAGE: return {
+		 ...state,
+		 pagination: {
+			 ...state.pagination,
+			 page: action.page,
+		 }
+	  }
       case 'DECREMENT': return state
 	  default: return state
    }

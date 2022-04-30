@@ -1,8 +1,8 @@
 import React from "react";
-const Product = () => ( 
+const ProductPage = () => ( 
     <div>
 	  product
     </div>
 );
 
-export default Product;
+export default ProductPage;
