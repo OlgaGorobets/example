@@ -1,6 +1,6 @@
 import React from "react";
 import ProductsList from "../containers/ProductsList";
-import MiniBasket from "../containers/miniBasket";
+import MiniBasket from "../containers/MiniBasket";
 
 const Home = () => (<div>
 	  home page
