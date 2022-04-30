@@ -1,11 +1,17 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+import Sorting from './Sorting';
 
 const ProductItem = styled.div`
   border-top: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
+  ${({isHeader}) => isHeader && css`
+	font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+  `};
 `
 const ProductItemBlock = styled.div`
   flex:1 1 auto;
@@ -23,15 +29,25 @@ const ProductButtonParent = styled(ProductItemBlock)`
 `
 const ProductButton = styled.button`
 `
-const Product = ({product}) => {
-	console.log(product);
+const ClearButton = styled.button`
+   background: #ccc;
+`
+const Product = ({product, setSortingFilter, clearFilter, filter}) => {
 	return ( 
-    <ProductItem>
-	  <ProductTitle>{product.name}</ProductTitle>
-	  <ProductDescription>{product.description}</ProductDescription>
-	  <ProductPrice>{product.price}$</ProductPrice>
+    <ProductItem isHeader={setSortingFilter}>
+	  <ProductTitle>{product.name}
+		  {setSortingFilter && <Sorting name="name" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/>}
+	  </ProductTitle>
+	  <ProductDescription>{product.description}
+	    {setSortingFilter && <Sorting name="description" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/>}
+	  </ProductDescription>
+	  <ProductPrice>{product.price}
+	    {setSortingFilter ? <Sorting name="price" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/> : ' $'}
+	  </ProductPrice>
 	  <ProductButtonParent>
-	    <ProductButton>Add to Basket</ProductButton>
+	    { setSortingFilter 
+		? filter.sortField.name && <ClearButton onClick={clearFilter}>Clear Filters</ClearButton> 
+		: <ProductButton>Add to Basket</ProductButton>}
 	  </ProductButtonParent>
     </ProductItem>
 )

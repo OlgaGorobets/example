@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Product from '../components/Product';
 
 
-const ProductsFilter = ({products}) => {
-	console.log(products);
+const ProductsFilter = ({products, filter}) => {
 	return ( 
     <div>filter</div>
 )
@@ -12,4 +11,5 @@ const ProductsFilter = ({products}) => {
 
 export default connect(state => ({
     products: state.products,
+	filter: state.filter,
   }))(ProductsFilter);

@@ -12,10 +12,19 @@ const Title = styled.h3`
 `
 
 
-const Products = ({filteredProducts, filter}) => {
+const Products = ({filteredProducts, filter, setSortingFilter, clearFilter}) => {
     return ( 
 	  <ProductsParent>
 		<Title>Products:</Title>
+		<Product
+		  setSortingFilter={setSortingFilter}
+		  clearFilter={clearFilter}
+		  filter={filter}
+		  product={({
+			name: 'name',
+			description: 'description',
+			price: 'price',
+		})}/>
 		{filteredProducts.map(product => <Product key={product.id} product={product}/>)}
       </ProductsParent>		
    )

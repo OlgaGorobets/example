@@ -1,12 +1,15 @@
 import { SET_PAGINATION_ACTIVE_PAGE } from '../actions/pagination';
+import { SET_SORTING_FILTER, CLEAR_FILTER } from '../actions/filter';
+
+import { sortingData } from '../constants';
 
 const getProducts = (count=50) => {
 	let res = []
 	for(let i=0;i<count;i++){
 		res.push({
-		  id: `product${i}`,
-		  name: `Product${i}`,
-		  description: `Description${i}`,
+		  id: `product_${i}`,
+		  name: `Product name ${i}`,
+		  description: `Description of this product ${i}`,
 		  price: parseFloat(Math.random() * 900 + 1000).toFixed(2)
 		})
 	}
@@ -16,7 +19,7 @@ const initialState = {
    products: getProducts(),
    pagination:{ page: 0, count: 9},
    filter: {
-	   sortField: {name: 'name', type: 'asc'},
+	   sortField: {name: false, type: sortingData.UP},
 	   removeFields: [],
    },
    basket: {},
@@ -31,7 +34,28 @@ const reducer = (state = initialState, action) => {
 			 page: action.page,
 		 }
 	  }
-      case 'DECREMENT': return state
+      case SET_SORTING_FILTER: return {
+		 ...state,
+		 pagination: {
+			 ...state.pagination,
+			 page: 0,
+		 },
+		 filter: {
+			...state.filter,
+			sortField: action.sorting,
+		 }
+	  }
+      case CLEAR_FILTER: return {
+		 ...state,
+		 pagination: {
+			 ...state.pagination,
+			 page: 0,
+		 },
+		 filter: {
+			sortField: {name: false, type: sortingData.UP},
+			removeFields: [],
+		 }
+	  }
 	  default: return state
    }
 }
