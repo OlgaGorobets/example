@@ -1,15 +1,12 @@
 import React from "react";
-import { connect } from 'react-redux';
+import ProductsList from "../containers/ProductsList";
+import MiniBasket from "../containers/miniBasket";
 
-const Home = ({products}) => {
-	console.log(products);
-	return ( 
-    <div>
+const Home = () => (<div>
 	  home111
+	  <ProductsList/>
+	  <MiniBasket/>
     </div>
 )
-}
 
-export default connect((state) => ({
-    products: state.products,
-  }))(Home);
+export default Home
