@@ -32,7 +32,7 @@ const ProductButton = styled.button`
 const ClearButton = styled.button`
    background: #ccc;
 `
-const Product = ({product, setSortingFilter, clearFilter, filter}) => {
+const Product = ({product, setSortingFilter, clearFilter, filter, addProductToBasket}) => {
 	return ( 
     <ProductItem isHeader={setSortingFilter}>
 	  <ProductTitle>{product.name}
@@ -47,7 +47,7 @@ const Product = ({product, setSortingFilter, clearFilter, filter}) => {
 	  <ProductButtonParent>
 	    { setSortingFilter 
 		? filter.sortField.name && <ClearButton onClick={clearFilter}>Clear Filters</ClearButton> 
-		: <ProductButton>Add to Basket</ProductButton>}
+		: <ProductButton onClick={() => addProductToBasket(product.id)}>Add to Basket</ProductButton>}
 	  </ProductButtonParent>
     </ProductItem>
 )

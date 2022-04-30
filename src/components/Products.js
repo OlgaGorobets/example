@@ -12,7 +12,7 @@ const Title = styled.h3`
 `
 
 
-const Products = ({filteredProducts, filter, setSortingFilter, clearFilter}) => {
+const Products = ({filteredProducts, filter, setSortingFilter, clearFilter, addProductToBasket}) => {
     return ( 
 	  <ProductsParent>
 		<Title>Products:</Title>
@@ -25,7 +25,7 @@ const Products = ({filteredProducts, filter, setSortingFilter, clearFilter}) => 
 			description: 'description',
 			price: 'price',
 		})}/>
-		{filteredProducts.map(product => <Product key={product.id} product={product}/>)}
+		{filteredProducts.map(product => <Product key={product.id} product={product} addProductToBasket={addProductToBasket}/>)}
       </ProductsParent>		
    )
 }

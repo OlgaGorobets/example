@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from "react-redux";
 import HomePage from './pages/HomePage';
-import ProductPage from './pages/ProductPage';
+import BasketPage from './pages/BasketPage';
 import reducer from '../src/reducers'
 
 const store = createStore(
@@ -15,7 +15,7 @@ const App = () => (
 	  <BrowserRouter>
 	    <Routes>
           <Route exact path='/'  element={<HomePage/>}/>
-          <Route path='/:id'  element={<ProductPage/>}/>
+          <Route path='/basket'  element={<BasketPage/>}/>
 		</Routes>  
 	   </BrowserRouter>
     </Provider>

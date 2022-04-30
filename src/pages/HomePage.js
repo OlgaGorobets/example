@@ -5,9 +5,9 @@ import MiniBasket from '../containers/MiniBasket';
 
 const HomePage = () => (
     <>
+	  <MiniBasket/>
 	  <ProductsFilter/>
 	  <ProductsList/>
-	  <MiniBasket/>
     </>
 )
 

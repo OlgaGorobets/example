@@ -5,9 +5,10 @@ import Products from '../components/Products';
 import Pagination from '../components/Pagination';
 import { setPaginationActivePage } from '../actions/pagination';
 import { setSortingFilter, clearFilter } from '../actions/filter';
+import { addProductToBasket, changeProductsCountInBasket } from '../actions/basket';
 import { sortingData, isSortingFieldInt } from '../constants';
 
-const ProductsList = ({products, filter, pagination, onSetPaginationActivePage, onSetSortingFilter, onClearFilter}) => {
+const ProductsList = ({products, filter, pagination, basket, onSetPaginationActivePage, onSetSortingFilter, onClearFilter, onAddProductToBasket, onChangeProductsCountInBasket}) => {
     const usePaginationFilter = (item, index) => index >= pagination.page*pagination.count && index < pagination.page*pagination.count + pagination.count
 	const sortingName = filter.sortField.name
 	const sortingIsUp = filter.sortField.type === sortingData.UP
@@ -25,9 +26,18 @@ const ProductsList = ({products, filter, pagination, onSetPaginationActivePage, 
 	const filteredProductsForPage = filteredProducts.filter(usePaginationFilter)
 	const paginationButtonsCount = parseInt(filteredProducts.length/pagination.count + 1)
     const clickPaginationButton = (index) => onSetPaginationActivePage(index)
+	const clickAddToBasket = (id) => {
+       const productInBasket = basket.find((item)=> item.id === id)
+	   if(productInBasket){
+		  onChangeProductsCountInBasket(id, productInBasket.count+1) 
+	   }
+	   else{
+		 onAddProductToBasket(id)
+	   }
+	}
 	return ( 
 	<>
-      <Products filteredProducts={filteredProductsForPage} clearFilter={onClearFilter} filter={filter} setSortingFilter={onSetSortingFilter} />
+      <Products addProductToBasket={clickAddToBasket} filteredProducts={filteredProductsForPage} clearFilter={onClearFilter} filter={filter} setSortingFilter={onSetSortingFilter} />
 	  <Pagination active={pagination.page} count={paginationButtonsCount} clickButton={clickPaginationButton} />
 	</>
     )
@@ -38,6 +48,7 @@ export default connect(
     products: state.products,
 	filter: state.filter,
 	pagination: state.pagination,
+	basket: state.basket,
   }),
   dispatch => ({
 	onSetPaginationActivePage: index => {
@@ -48,5 +59,11 @@ export default connect(
 	},
 	onClearFilter: () => {
 	  dispatch(clearFilter());
+	},
+	onAddProductToBasket: (id) => {
+	  dispatch(addProductToBasket(id));
+	},
+	onChangeProductsCountInBasket: (id, count) => {
+	  dispatch(changeProductsCountInBasket(id, count));
 	}
   }))(ProductsList);

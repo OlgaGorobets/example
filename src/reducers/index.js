@@ -1,5 +1,6 @@
 import { SET_PAGINATION_ACTIVE_PAGE } from '../actions/pagination';
 import { SET_SORTING_FILTER, CLEAR_FILTER } from '../actions/filter';
+import { ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET } from '../actions/basket';
 
 import { sortingData } from '../constants';
 
@@ -22,7 +23,7 @@ const initialState = {
 	   sortField: {name: false, type: sortingData.UP},
 	   removeFields: [],
    },
-   basket: {},
+   basket: [],
    order: {},
 }
 const reducer = (state = initialState, action) => {
@@ -55,6 +56,18 @@ const reducer = (state = initialState, action) => {
 			sortField: {name: false, type: sortingData.UP},
 			removeFields: [],
 		 }
+	  }
+      case ADD_PRODUCT_TO_BASKET: return {
+		 ...state,
+	     basket: [...state.basket, {id: action.id, count: 1}],
+	  }
+      case REMOVE_PRODUCT_FROM_BASKET: return {
+		 ...state,
+	     basket: state.basket.filter((item)=>item.id !== action.id),
+	  }
+      case CHANGE_PRODUCTS_COUNT_IN_BASKET: return {
+		 ...state,
+	     basket: state.basket.map((item)=> item.id === action.id ? {id: action.id, count: action.count} : item),
 	  }
 	  default: return state
    }
