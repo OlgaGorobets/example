@@ -1,5 +1,5 @@
 import { put, takeEvery, all, select } from 'redux-saga/effects'
-import { ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET, FILL_BASKET } from '../actions/basket'
+import { ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET, FILL_BASKET, CLEAR_BASKET } from '../actions/basket'
 import { basketStorageName } from '../constants'
 
 function* fetchBasket() {
@@ -15,7 +15,7 @@ function* saveBasket() {
 }
 
 function* actionWatcher() {
-  yield takeEvery([ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET], saveBasket)
+  yield takeEvery([ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET, CLEAR_BASKET], saveBasket)
 }
 
 export function* rootSaga() {

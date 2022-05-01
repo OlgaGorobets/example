@@ -2,6 +2,7 @@ export const ADD_PRODUCT_TO_BASKET = 'ADD_PRODUCT_TO_BASKET';
 export const REMOVE_PRODUCT_FROM_BASKET = 'REMOVE_PRODUCT_FROM_BASKET';
 export const CHANGE_PRODUCTS_COUNT_IN_BASKET = 'CHANGE_PRODUCTS_COUNT_IN_BASKET';
 export const FILL_BASKET = 'FILL_BASKET';
+export const CLEAR_BASKET = 'CLEAR_BASKET';
 
 export function addProductToBasket(id) {
    return {
@@ -21,5 +22,10 @@ export function changeProductsCountInBasket(id, count) {
       type: CHANGE_PRODUCTS_COUNT_IN_BASKET,
       id,
 	  count,
+   }
+}
+export function clearBasket() {
+   return {
+      type: CLEAR_BASKET,
    }
 }

@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import Order from '../containers/Order';
 import BasketProductsView from '../components/BasketProductsView';
 
 const EmptyBasket = styled.div``
-
+const OrderSubmited = styled.div`
+`
 const BasketProducts = ({basketProducts, products, changeProductCount}) => {
+	const [orderSubmited, setOrderSubmited] = useState(null)
+	
     return  basketProducts.length > 0 ?
 			<>
 		      <BasketProductsView basketProducts={basketProducts} products={products} changeProductCount={changeProductCount}/>
-			  <Order/>
+			  <Order setOrderSubmited={setOrderSubmited}/>
 			</> :
-		    <EmptyBasket>Your basket is empty</EmptyBasket>
+            orderSubmited ? <OrderSubmited>{orderSubmited.name}, we have received your order and will contact you shortly</OrderSubmited> : <EmptyBasket>Your basket is empty</EmptyBasket>
 
 }
 
