@@ -1,5 +1,5 @@
 import { SET_PAGINATION_ACTIVE_PAGE } from '../actions/pagination';
-import { SET_SORTING_FILTER, CLEAR_FILTER } from '../actions/filter';
+import { SET_SORTING_FILTER, CLEAR_FILTER, SET_FIELD_VISIBILITY } from '../actions/filter';
 import { ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET, FILL_BASKET } from '../actions/basket';
 
 import { sortingData } from '../constants';
@@ -21,7 +21,7 @@ const initialState = {
    pagination:{ page: 0, count: 9},
    filter: {
 	   sortField: {name: false, type: sortingData.UP},
-	   removeFields: [],
+	   hiddenFields: [],
    },
    basket: [],
    order: {},
@@ -54,7 +54,14 @@ const reducer = (state = initialState, action) => {
 		 },
 		 filter: {
 			sortField: {name: false, type: sortingData.UP},
-			removeFields: [],
+			hiddenFields: [],
+		 }
+	  }
+      case SET_FIELD_VISIBILITY: return {
+		 ...state,
+		 filter: {
+			...state.filter,
+			hiddenFields: action.hiddenFields,
 		 }
 	  }
       case FILL_BASKET: return {

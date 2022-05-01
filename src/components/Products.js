@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Product from './Product';
+import { productFields } from '../constants'
 
 const ProductsParent = styled.div`
   font-weight: 14px;
@@ -21,11 +22,11 @@ const Products = ({filteredProducts, filter, setSortingFilter, clearFilter, addP
 		  clearFilter={clearFilter}
 		  filter={filter}
 		  product={({
-			name: 'name',
-			description: 'description',
-			price: 'price',
+			[productFields.NAME]: 'Name',
+			[productFields.DESCRIPTION]: 'Description',
+			[productFields.PRICE]: 'Price',
 		})}/>
-		{filteredProducts.map(product => <Product key={product.id} product={product} addProductToBasket={addProductToBasket}/>)}
+		{filteredProducts.map(product => <Product key={product.id} filter={filter} product={product} addProductToBasket={addProductToBasket}/>)}
       </ProductsParent>		
    )
 }

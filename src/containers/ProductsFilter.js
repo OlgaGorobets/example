@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Product from '../components/Product';
+import { setFieldVisibility } from '../actions/filter';
+import Filter from '../components/Filter';
 
 
-const ProductsFilter = ({products, filter}) => {
+const ProductsFilter = ({hiddenFields, onSetFieldVisibility}) => {
 	return ( 
-    <div>filter</div>
-)
+    <Filter hiddenFields={hiddenFields} setFieldVisibility={onSetFieldVisibility}/>
+   )
 }
 
 export default connect(state => ({
-    products: state.products,
-	filter: state.filter,
+	hiddenFields: state.filter.hiddenFields,
+  }), dispatch => ({
+	onSetFieldVisibility: hiddenFields => {
+      dispatch(setFieldVisibility(hiddenFields));
+    },
   }))(ProductsFilter);
