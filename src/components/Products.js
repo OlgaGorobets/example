@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Product from './Product';
+import Product from './Product'
 import { productFields } from '../constants'
+import { productsType, filterType } from '../types'
 
 const ProductsParent = styled.div`
   font-weight: 14px;
@@ -30,5 +32,14 @@ const Products = ({filteredProducts, filter, setSortingFilter, clearFilter, addP
       </ProductsParent>		
    )
 }
+
+Products.propTypes = {
+  filteredProducts: productsType.isRequired,
+  filter: filterType.isRequired,
+  setSortingFilter: PropTypes.func.isRequired,
+  clearFilter: PropTypes.func.isRequired,
+  addProductToBasket: PropTypes.func.isRequired,
+}
+
 
 export default Products

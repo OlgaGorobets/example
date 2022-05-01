@@ -1,8 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from "react-router-dom"
 import styled from 'styled-components'
-import { getbasketProductsPrice } from '../helpers';
+import { getbasketProductsPrice } from '../helpers'
+import { productsType, basketProductsType } from '../types'
 
 const BasketCounter = styled(Link)`
   display: flex;
@@ -24,6 +25,11 @@ const MiniBasket = ({basketProducts, products}) => {
 	Count of products in your basket is <BasketCounterValue>{basketProducts.length}</BasketCounterValue> full amount is <BasketCounterValue>{basketProductsPrice.toFixed(2)}</BasketCounterValue> $
     </BasketCounter>
 )
+}
+
+MiniBasket.propTypes = {
+  basketProducts: basketProductsType.isRequired,
+  products: productsType.isRequired,
 }
 
 export default connect(state => ({

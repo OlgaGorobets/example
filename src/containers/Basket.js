@@ -1,9 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import BasketProducts from '../components/BasketProducts';
-import {removeProductFromBasket, changeProductsCountInBasket} from '../actions/basket';
-import {getBasketProductData} from '../helpers';
+import BasketProducts from '../components/BasketProducts'
+import {removeProductFromBasket, changeProductsCountInBasket} from '../actions/basket'
+import {getBasketProductData} from '../helpers'
+import { productsType, basketProductsType } from '../types'
 
 const BasketParent = styled.div`
 `
@@ -26,6 +28,13 @@ const Basket = ({basketProducts, products, onRemoveProductFromBasket, onChangePr
           <BasketProducts basketProducts={basketProducts} products={products} changeProductCount={changeProductCount}/>
 	   </BasketParent>
 	)
+}
+
+Basket.propTypes = {
+  basketProducts: basketProductsType.isRequired,
+  products: productsType.isRequired,
+  onRemoveProductFromBasket: PropTypes.func.isRequired,
+  onChangeProductsCountInBasket: PropTypes.func.isRequired,
 }
 
 export default connect(state => ({

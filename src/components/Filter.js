@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled, {css} from 'styled-components'
-import PaginationButton from './PaginationButton';
+import PaginationButton from './PaginationButton'
 import { productFields } from '../constants'
+import { hiddenFieldsType } from '../types'
 
 const FilterParent = styled.div`
   display: flex;
@@ -24,6 +26,11 @@ const Filter = ({hiddenFields, setFieldVisibility}) => {
 	  })}
       </FilterParent>		
    )
+}
+
+Filter.propTypes = {
+  hiddenFields: hiddenFieldsType.isRequired,
+  setFieldVisibility: PropTypes.func.isRequired,
 }
 
 export default Filter

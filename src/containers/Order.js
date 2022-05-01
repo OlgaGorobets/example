@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import { connect } from 'react-redux';
+import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import BasketProductsView from '../components/BasketProductsView';
-import OrderForm from '../components/OrderForm';
-import {clearBasket} from '../actions/basket';
+import BasketProductsView from '../components/BasketProductsView'
+import OrderForm from '../components/OrderForm'
+import {clearBasket} from '../actions/basket'
+import { productsType, basketProductsType } from '../types'
 
 const OrderButton = styled.button`
 `
@@ -38,6 +40,13 @@ const Order = ({basketProducts, products, onClearBasket, setOrderSubmited}) => {
 		}
 	   </OrderParent>
 	)
+}
+
+Order.propTypes = {
+  basketProducts: basketProductsType.isRequired,
+  products: productsType.isRequired,
+  onClearBasket: PropTypes.func.isRequired,
+  setOrderSubmited: PropTypes.func.isRequired,
 }
 
 export default connect(state => ({

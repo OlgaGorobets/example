@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Order from '../containers/Order';
-import BasketProductsView from '../components/BasketProductsView';
+import Order from '../containers/Order'
+import BasketProductsView from '../components/BasketProductsView'
+import { productsType, basketProductsType } from '../types'
 
 const EmptyBasket = styled.div``
 const OrderSubmited = styled.div`
@@ -18,4 +20,11 @@ const BasketProducts = ({basketProducts, products, changeProductCount}) => {
 
 }
 
+BasketProducts.propTypes = {
+  basketProducts: basketProductsType.isRequired,
+  products: productsType.isRequired,
+  changeProductCount: PropTypes.func.isRequired,
+}
+
 export default BasketProducts
+

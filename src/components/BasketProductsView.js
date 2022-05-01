@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { getbasketProductsPrice, getBasketProductData } from '../helpers';
+import { productsType, basketProductsType } from '../types'
 
 const BasketProductButton = styled.button`
   margin: 0 1px;
@@ -44,6 +46,15 @@ const BasketProductsView = ({basketProducts, products, changeProductCount}) => {
 			  })}
 			  <TotalPrice>Total Price: {basketProductsPrice.toFixed(2)} $</TotalPrice>
 		  </>	  
+}
+
+BasketProductsView.propTypes = {
+  basketProducts: basketProductsType.isRequired,
+  products: productsType.isRequired,
+  changeProductCount: PropTypes.func,
+}
+BasketProductsView.defaultProps = {
+  changeProductCount: null,
 }
 
 export default BasketProductsView

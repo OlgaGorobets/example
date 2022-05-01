@@ -1,6 +1,8 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled, {css} from 'styled-components'
-import { sortingData } from '../constants';
+import { sortingData } from '../constants'
+import { sortFieldType } from '../types'
 
 const Button = styled.button`
   background : ${({isActive}) => isActive ? 'blue' : '#ccc'};
@@ -25,6 +27,12 @@ const Sorting = ({sortingFilter, name, setSortingFilter}) => {
 	 </Button>
     </>
 )
+}
+
+Sorting.propTypes = {
+  sortingFilter: sortFieldType.isRequired,
+  name: PropTypes.string.isRequired,
+  setSortingFilter: PropTypes.func.isRequired,
 }
 
 export default Sorting

@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Button = styled.button`
   background : ${({isActive}) => isActive ? 'blue' : '#ccc'};
@@ -18,6 +19,16 @@ const PaginationButton = ({isActive, value, clickButton}) => {
 	  {value}
       </Button>		
    )
+}
+
+PaginationButton.propTypes = {
+  isActive: PropTypes.bool,
+  value: PropTypes.number,
+  clickButton: PropTypes.func.isRequired,
+}
+PaginationButton.defaultProps = {
+  isActive: false,
+  value: 0,
 }
 
 export default PaginationButton

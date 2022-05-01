@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { Formik, Form, Field } from 'formik'
 
 const FieldParent = styled.div`
@@ -43,6 +44,10 @@ const OrderForm = ({submitOrder}) => {
      )}
     </Formik>		
    )
+}
+
+OrderForm.propTypes = {
+  submitOrder: PropTypes.func.isRequired,
 }
 
 export default OrderForm

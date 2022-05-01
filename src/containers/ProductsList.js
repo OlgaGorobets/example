@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux';
 import Products from '../components/Products';
@@ -7,6 +8,7 @@ import { setPaginationActivePage } from '../actions/pagination';
 import { setSortingFilter, clearFilter } from '../actions/filter';
 import { addProductToBasket, changeProductsCountInBasket } from '../actions/basket';
 import { sortingData, isSortingFieldInt } from '../constants';
+import { productsType, filterType, paginationType, basketProductsType } from '../types'
 
 const ProductsList = ({products, filter, pagination, basket, onSetPaginationActivePage, onSetSortingFilter, onClearFilter, onAddProductToBasket, onChangeProductsCountInBasket}) => {
     const usePaginationFilter = (item, index) => index >= pagination.page*pagination.count && index < pagination.page*pagination.count + pagination.count
@@ -41,6 +43,18 @@ const ProductsList = ({products, filter, pagination, basket, onSetPaginationActi
 	  <Pagination active={pagination.page} count={paginationButtonsCount} clickButton={clickPaginationButton} />
 	</>
     )
+}
+
+ProductsList.propTypes = {
+  products: productsType.isRequired,
+  filter: filterType.isRequired,
+  pagination: paginationType.isRequired,
+  basket: basketProductsType.isRequired,
+  onSetPaginationActivePage: PropTypes.func.isRequired,
+  onSetSortingFilter: PropTypes.func.isRequired,
+  onClearFilter: PropTypes.func.isRequired,
+  onAddProductToBasket: PropTypes.func.isRequired,
+  onChangeProductsCountInBasket: PropTypes.func.isRequired,
 }
 
 export default connect(
