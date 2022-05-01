@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+import { getbasketProductsPrice } from '../helpers';
 
 const BasketCounter = styled(Link)`
   display: flex;
@@ -17,14 +18,10 @@ const BasketCounterValue = styled.div`
    text-align: center;
 `
 const MiniBasket = ({basketProducts, products}) => {
-	const basketProductsAmountArr = basketProducts.map((item) => {
-		const basketProduct =  products.find((product)=>product.id === item.id)
-		return parseFloat(basketProduct.price) * item.count
-	})	
-	const basketProductsAmount = basketProductsAmountArr.reduce((prev, next) => prev + next, 0)
+	const basketProductsPrice = getbasketProductsPrice(basketProducts, products)
 	return ( 
     <BasketCounter to="/basket">
-	Count of products in your basket is <BasketCounterValue>{basketProducts.length}</BasketCounterValue> full amount is <BasketCounterValue>{basketProductsAmount.toFixed(2)}</BasketCounterValue> $
+	Count of products in your basket is <BasketCounterValue>{basketProducts.length}</BasketCounterValue> full amount is <BasketCounterValue>{basketProductsPrice.toFixed(2)}</BasketCounterValue> $
     </BasketCounter>
 )
 }

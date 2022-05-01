@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import styled from 'styled-components'
+import BasketProducts from '../components/BasketProducts';
 
 const BasketParent = styled.div`
-  display: flex;
 `
+const Title = styled.h4``
 
 const Basket = ({basketProducts, products}) => {
-	/*const basketProductsAmountArr = basketProducts.map((item) => {
-		const basketProduct =  products.find((product)=>product.id === item.id)
-		return parseFloat(basketProduct.price) * item.count
-	})	
-	const basketProductsAmount = basketProductsAmountArr.reduce((prev, next) => prev + next, 0)*/
+	const changeProductCount = (id, counter) => {
+		
+	}
 	return ( 
        <BasketParent>
-	   basket page
+	      <Title>Basket</Title>
+          <BasketProducts basketProducts={basketProducts} products={products} changeProductCount={changeProductCount}/>
 	   </BasketParent>
 	)
 }
