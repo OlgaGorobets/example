@@ -24,7 +24,6 @@ const initialState = {
 	   hiddenFields: [],
    },
    basket: [],
-   order: {},
 }
 const reducer = (state = initialState, action) => {
    switch (action.type) {
