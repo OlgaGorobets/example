@@ -7,3 +7,5 @@ export const isSortingFieldInt = {
 	'description': false,
 	'price': true
 }
+
+export const basketStorageName = 'basket_storage'

@@ -45,7 +45,7 @@ const BasketProducts = ({basketProducts, products, changeProductCount}) => {
 					</BasketProduct>
 				  )
 			  })}
-			  <TotalPrice>Total Price: {basketProductsPrice} $</TotalPrice>
+			  <TotalPrice>Total Price: {basketProductsPrice.toFixed(2)} $</TotalPrice>
 			  <OrderButton>Order</OrderButton>
 			</> :
 		    <EmptyBasket>Your basket is empty</EmptyBasket>
