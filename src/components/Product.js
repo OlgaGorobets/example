@@ -38,9 +38,7 @@ const Product = ({product, setSortingFilter, clearFilter, filter, addProductToBa
 	  <ProductTitle>{product.name}
 		  {setSortingFilter && <Sorting name="name" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/>}
 	  </ProductTitle>
-	  <ProductDescription>{product.description}
-	    {setSortingFilter && <Sorting name="description" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/>}
-	  </ProductDescription>
+	  <ProductDescription>{product.description}</ProductDescription>
 	  <ProductPrice>{product.price}
 	    {setSortingFilter ? <Sorting name="price" setSortingFilter={setSortingFilter} sortingFilter={filter.sortField}/> : ' $'}
 	  </ProductPrice>
