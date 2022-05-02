@@ -8,7 +8,7 @@ import { productsType, basketProductsType } from '../types'
 const EmptyBasket = styled.div``
 const OrderSubmited = styled.div`
 `
-const BasketProducts = ({basketProducts, products, changeProductCount}) => {
+export const BasketProducts = ({basketProducts, products, changeProductCount}) => {
 	const [orderSubmited, setOrderSubmited] = useState(null)
 	
     return  basketProducts.length > 0 ?

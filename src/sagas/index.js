@@ -2,7 +2,7 @@ import { put, takeEvery, all, select } from 'redux-saga/effects'
 import { ADD_PRODUCT_TO_BASKET, REMOVE_PRODUCT_FROM_BASKET, CHANGE_PRODUCTS_COUNT_IN_BASKET, FILL_BASKET, CLEAR_BASKET } from '../actions/basket'
 import { basketStorageName } from '../constants'
 
-function* fetchBasket() {
+export function* fetchBasket() {
   const basket = yield  localStorage.getItem(basketStorageName)
   if(basket){
 	yield put({ type: FILL_BASKET, basket: JSON.parse(basket) })
